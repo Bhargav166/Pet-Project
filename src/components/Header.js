@@ -1,9 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+// import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import './Header.css'
 import { useStateValue } from '../StateProvider';
+import logo from '../images/dog_logo (1).png'
+
 
 function Header() {
 
@@ -13,7 +16,7 @@ function Header() {
         <nav className='header'>
             {/* amazon logo */}
             <Link to='/'>
-                <img className='header__logo' src='https://img.freepik.com/premium-vector/simplicity-little-dog-logo-black-background_100659-184.jpg' alt='amazon logo' />
+                <img className='header__logo' src={logo} alt='amazon logo' />
             </Link>
 
             {/* search box */}
@@ -44,7 +47,7 @@ function Header() {
                 {/* 3rd link */}
                 <Link to='/checkout' className='header__link'>
                     <div className='header__optionBasket'>
-                        <ShoppingBasketIcon />
+                        <ShoppingCartIcon />
                         {/* shopping basket icon */}
                         <span className='header__optionLineTwo header__basketCount'>
                             {basket.length}

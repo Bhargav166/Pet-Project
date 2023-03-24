@@ -2,6 +2,7 @@ import React from 'react'
 import Header from './Header'
 import Product from './Product'
 import "./Home.css"
+import dog_background from "../images/dog_group.png"
 
 function Home() {
     return (
@@ -9,7 +10,7 @@ function Home() {
             <Header />
             <div className="home">
                 <img className='home__image'
-                    src="https://www.forbes.com/advisor/wp-content/uploads/2021/03/dog-group.jpg"
+                    src={dog_background}
                     alt="Prime Video banner " />
 
                 <div className="home__row">
