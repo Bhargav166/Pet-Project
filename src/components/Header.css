@@ -6,7 +6,7 @@
 
 
 .header, .header__searchIcon {   
-    background-color: #E5D1FA;
+    background-color: rgb(216, 187, 249);
     display: flex;
     align-items: center;
     position: sticky;
