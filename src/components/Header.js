@@ -1,17 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import SearchIcon from '@mui/icons-material/Search';
-// import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import './Header.css'
 import { useStateValue } from '../StateProvider';
-import logo from '../images/dog_logo (1).png'
+import logo from '../images/dog_logo.png'
+import { auth } from 'firebase';
 
 
 function Header() {
 
-    const [{ basket }] = useStateValue();
+    const [{ basket, user }] = useStateValue();
 
+    const handleSignOut = () => {
+        auth().signOut();
+    }
     return (
         <nav className='header'>
             {/* amazon logo */}
@@ -29,10 +32,10 @@ function Header() {
             <div className='header__nav'>
 
                 {/* 1st link */}
-                <Link to='/login' className='header__link'>
-                    <div className='header__option'>
+                <Link to={!user && '/login'} className='header__link'>
+                    <div onClick={handleSignOut} className='header__option'>
                         <span className='header__optionLineOne'>Hello User</span>
-                        <span className='header__optionLineTwo'>Sign In</span>
+                        <span className='header__optionLineTwo'>{user ? 'Sign Out' : 'Sign In'}</span>
                     </div>
                 </Link>
 

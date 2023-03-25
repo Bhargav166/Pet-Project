@@ -1,58 +1,79 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Login.css'
 import { Link, useNavigate } from 'react-router-dom'
-// import { auth } from '../firebase.js'
-
+import { auth } from '../firebase.js'
 function Login() {
 
-    //     const history = useNavigate();
-    //     const [email, setEmail] = useState('')
-    //     const [password, setPassword] = useState('')
+    const history = useNavigate();
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    //     const login = event => {
-    //         event.preventDefault();
-    //         auth.signInWithEmailAndPassword(email, password)
-    //             .then((auth) => {
-    //                 // logged in, redirect to homepage...
-    //                 history.push('/'); A
-    //             })
-    //             .catch(e => alert(e.message))
-    //     }
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (user) {
+                setIsLoggedIn(true);
+                history('/');
+            }
+        });
 
-    // const register = event => {
-    //     event.preventDefault();
-    //     auth.createUserWithEmailAndPassword(email, password)
-    //         .then((auth) => {
-    //             // created a user and logged in, redirect to homepage...
-    //         })
-    //         .catch(e => alert(e.message))
+        return unsubscribe;
+    }, [history]);
 
 
-    // }
+    const login = event => {
+        event.preventDefault();
+        auth.signInWithEmailAndPassword(email, password)
+            .then(() => {
+                setIsLoggedIn(true);
+                history('/');
+                alert('Logged in successfully')
+            })
+            .catch(e => alert(e.message))
+
+    }
+
+    const register = event => {
+        event.preventDefault();
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                setIsLoggedIn(true);
+                alert("Account registered")
+            })
+            .catch(e => alert(e.message))
+
+    }
 
     return (
         <div className='login'>
-            {/* <Link to='/'>
+            <Link to='/'>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png" alt="" className="login__logo" />
-            </Link> */}
+            </Link>
             <div className="login__container">
-                <h1>Sign In</h1>
-                <form>
-                    <h5>E-mail</h5>
-                    <input type="email" />
-                    <h5>Password</h5>
-                    <input type="password" />
-                    <button type="submit" className="login__signInButton">Sign In</button>
-                </form>
-                <p>
-                    By signing-in you agree to our Conditions of Use & Sale. Please see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
-                </p>
-                <p>Not registered?</p>
-                <button className="login__registerButton">Create your Account</button>
 
+                {isLoggedIn ? (
+                    <h1>Welcome Back!</h1>
+                ) : (
+                    <>
+                        <h1>Sign In</h1>
+                        <form>
+                            <h5>E-mail</h5>
+                            <input value={email} onChange={event => setEmail(event.target.value)} type="email" />
+                            <h5>Password</h5>
+                            <input value={password} onChange={event => setPassword(event.target.value)} type="password" />
+                            <button onClick={login} type="submit" className="login__signInButton">Sign In</button>
+                        </form>
+                        <p>
+                            By signing-in you agree to our Conditions of Use & Sale. Please see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
+                        </p>
+                        <p>Not registered?</p>
+                        <button onClick={register} className="login__registerButton">Create your Account</button>
+
+                    </>
+                )}
             </div>
         </div>
-    )
+    );
 }
 
 export default Login
