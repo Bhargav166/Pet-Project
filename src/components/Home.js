@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import Product from './Product'
+import Dropdowns from './Dropdowns'
 import "./Home.css"
 import dog_background from "../images/dog_group.png"
 
@@ -8,6 +9,7 @@ function Home() {
     return (
         <div>
             <Header />
+            <Dropdowns />
             <div className="home">
                 <img className='home__image'
                     src={dog_background}

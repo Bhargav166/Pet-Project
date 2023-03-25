@@ -15,11 +15,12 @@ function Header() {
     const handleSignOut = () => {
         auth().signOut();
     }
+
     return (
         <nav className='header'>
             {/* amazon logo */}
             <Link to='/'>
-                <img className='header__logo' src={logo} alt='amazon logo' />
+                <img className='header__logo' src={logo} alt='Dog logo' />
             </Link>
 
             {/* search box */}
@@ -60,7 +61,7 @@ function Header() {
 
             </div>
 
-        </nav>
+        </nav >
     )
 }
 
