@@ -47,38 +47,32 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className='login_page'>
             <div className="image">
                 <img src="https://spca.bc.ca/wp-content/uploads/family-outdoors-two-kids-two-dogs-825x551.jpg" alt="" />
             </div>
-            <div className='login'>
-
+            <div className="login__container">
                 <Link to='/'>
                     <img src={logo} alt="" className="login__logo" />
                 </Link>
-                <div className="login__container">
 
-                    {isLoggedIn ? (
-                        <h1>Welcome Back!</h1>
-                    ) : (
-                        <>
-                            <h1>Sign In</h1>
-                            <form>
-                                <h5>E-mail</h5>
-                                <input value={email} onChange={event => setEmail(event.target.value)} type="email" />
-                                <h5>Password</h5>
-                                <input value={password} onChange={event => setPassword(event.target.value)} type="password" />
-                                <button onClick={login} type="submit" className="login__signInButton">Sign In</button>
-                            </form>
-                            <p>
-                                By signing-in you agree to our Conditions of Use & Sale. Please see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
-                            </p>
-                            <p>Not registered?</p>
-                            <button onClick={register} className="login__registerButton">Create your Account</button>
+                {isLoggedIn ? (
+                    <h1>Welcome Back!</h1>
+                ) : (
+                    <>
+                        <h1>Sign In</h1>
+                        <form>
+                            <h5>E-mail</h5>
+                            <input value={email} onChange={event => setEmail(event.target.value)} type="email" />
+                            <h5>Password</h5>
+                            <input value={password} onChange={event => setPassword(event.target.value)} type="password" />
+                            <button onClick={login} type="submit" className="login__signInButton">Sign In</button>
+                        </form>
+                        <p>Not registered?</p>
+                        <button onClick={register} className="login__registerButton">Create your Account</button>
 
-                        </>
-                    )}
-                </div>
+                    </>
+                )}
             </div>
         </div>
 
