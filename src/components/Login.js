@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import './Login.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../firebase.js'
+import logo from '../images/dog_logo.png'
+
 function Login() {
 
     const history = useNavigate();
@@ -45,34 +47,41 @@ function Login() {
     }
 
     return (
-        <div className='login'>
-            <Link to='/'>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png" alt="" className="login__logo" />
-            </Link>
-            <div className="login__container">
+        <div>
+            <div className="image">
+                <img src="https://spca.bc.ca/wp-content/uploads/family-outdoors-two-kids-two-dogs-825x551.jpg" alt="" />
+            </div>
+            <div className='login'>
 
-                {isLoggedIn ? (
-                    <h1>Welcome Back!</h1>
-                ) : (
-                    <>
-                        <h1>Sign In</h1>
-                        <form>
-                            <h5>E-mail</h5>
-                            <input value={email} onChange={event => setEmail(event.target.value)} type="email" />
-                            <h5>Password</h5>
-                            <input value={password} onChange={event => setPassword(event.target.value)} type="password" />
-                            <button onClick={login} type="submit" className="login__signInButton">Sign In</button>
-                        </form>
-                        <p>
-                            By signing-in you agree to our Conditions of Use & Sale. Please see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
-                        </p>
-                        <p>Not registered?</p>
-                        <button onClick={register} className="login__registerButton">Create your Account</button>
+                <Link to='/'>
+                    <img src={logo} alt="" className="login__logo" />
+                </Link>
+                <div className="login__container">
 
-                    </>
-                )}
+                    {isLoggedIn ? (
+                        <h1>Welcome Back!</h1>
+                    ) : (
+                        <>
+                            <h1>Sign In</h1>
+                            <form>
+                                <h5>E-mail</h5>
+                                <input value={email} onChange={event => setEmail(event.target.value)} type="email" />
+                                <h5>Password</h5>
+                                <input value={password} onChange={event => setPassword(event.target.value)} type="password" />
+                                <button onClick={login} type="submit" className="login__signInButton">Sign In</button>
+                            </form>
+                            <p>
+                                By signing-in you agree to our Conditions of Use & Sale. Please see our Privacy Notice, our Cookies Notice and our Interest-Based Ads Notice.
+                            </p>
+                            <p>Not registered?</p>
+                            <button onClick={register} className="login__registerButton">Create your Account</button>
+
+                        </>
+                    )}
+                </div>
             </div>
         </div>
+
     );
 }
 

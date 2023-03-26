@@ -18,21 +18,18 @@ function Header() {
 
     return (
         <nav className='header'>
-            {/* amazon logo */}
+
             <Link to='/'>
                 <img className='header__logo' src={logo} alt='Dog logo' />
             </Link>
 
-            {/* search box */}
             <div className='header__search'>
                 <input type="text" className='header__searchInput' />
                 <SearchIcon className='header__searchIcon' />
             </div>
 
-            {/* 3 links */}
             <div className='header__nav'>
 
-                {/* 1st link */}
                 <Link to={!user && '/login'} className='header__link'>
                     <div onClick={handleSignOut} className='header__option'>
                         <span className='header__optionLineOne'>Hello User</span>
@@ -40,11 +37,10 @@ function Header() {
                     </div>
                 </Link>
 
-                {/* 2nd link */}
                 <Link to='/' className='header__link'>
                     <div className='header__option'>
-                        <span className='header__optionLineOne'>Returns</span>
-                        <span className='header__optionLineTwo'>& Orders</span>
+                        <span className='header__optionLineOne'>Ask Professional</span>
+                        <span className='header__optionLineTwo'>Support</span>
                     </div>
                 </Link>
 
