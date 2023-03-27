@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import './Login.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../firebase.js'
@@ -9,25 +9,11 @@ function Login() {
     const history = useNavigate();
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-            if (user) {
-                setIsLoggedIn(true);
-                history('/');
-            }
-        });
-
-        return unsubscribe;
-    }, [history]);
-
 
     const login = event => {
         event.preventDefault();
         auth.signInWithEmailAndPassword(email, password)
             .then(() => {
-                setIsLoggedIn(true);
                 history('/');
                 alert('Logged in successfully')
             })
@@ -39,7 +25,6 @@ function Login() {
         event.preventDefault();
         auth.createUserWithEmailAndPassword(email, password)
             .then(() => {
-                setIsLoggedIn(true);
                 alert("Account registered")
             })
             .catch(e => alert(e.message))
@@ -56,23 +41,17 @@ function Login() {
                     <img src={logo} alt="" className="login__logo" />
                 </Link>
 
-                {isLoggedIn ? (
-                    <h1>Welcome Back!</h1>
-                ) : (
-                    <>
-                        <h1>Sign In</h1>
-                        <form>
-                            <h5>E-mail</h5>
-                            <input value={email} onChange={event => setEmail(event.target.value)} type="email" />
-                            <h5>Password</h5>
-                            <input value={password} onChange={event => setPassword(event.target.value)} type="password" />
-                            <button onClick={login} type="submit" className="login__signInButton">Sign In</button>
-                        </form>
-                        <p>Not registered?</p>
-                        <button onClick={register} className="login__registerButton">Create your Account</button>
+                <h1>Sign In</h1>
+                <form>
+                    <h5>E-mail</h5>
+                    <input value={email} onChange={event => setEmail(event.target.value)} type="email" />
+                    <h5>Password</h5>
+                    <input value={password} onChange={event => setPassword(event.target.value)} type="password" />
+                    <button onClick={login} type="submit" className="login__signInButton">Sign In</button>
+                </form>
+                <p>Not registered?</p>
+                <button onClick={register} className="login__registerButton">Create your Account</button>
 
-                    </>
-                )}
             </div>
         </div>
 

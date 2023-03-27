@@ -11,6 +11,8 @@ import { auth } from 'firebase';
 function Header() {
 
     const [{ basket, user }] = useStateValue();
+    const currentUser = auth.currentUser;
+    console.log(currentUser);
 
     const handleSignOut = () => {
         auth().signOut();
