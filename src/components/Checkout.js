@@ -9,13 +9,20 @@ import Subtotal from './Subtotal';
 function Checkout() {
     // eslint-disable-next-line
     const [{ basket }] = useStateValue();
+    let ad_class = 'checkout__ad'
+    if (basket.length > 0) {
+        ad_class = 'checkout__ad--shift'
+    }
 
     return (
         <div>
             <Header />
             <div className='checkout'>
                 <div className='checkout__left'>
-                    <img src="https://static.vecteezy.com/system/resources/previews/013/977/663/non_2x/summer-time-special-offer-long-horizontal-banner-with-tropical-leaves-and-flat-elements-template-for-sales-promo-ads-bright-floral-illustration-with-text-blocks-vector.jpg" alt="" className="checkout__ad" />
+                    <img src="https://static.vecteezy.com/system/resources/previews/013/977/663/non_2x/summer-time-special-offer-long-horizontal-banner-with-tropical-leaves-and-flat-elements-template-for-sales-promo-ads-bright-floral-illustration-with-text-blocks-vector.jpg"
+                        alt=""
+                        className={ad_class}
+                    />
                     {basket.length === 0 ? (
                         <div>
                             <h2>Your shopping basket is empty</h2>

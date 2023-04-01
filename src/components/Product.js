@@ -1,6 +1,10 @@
 import React from 'react'
 import './Product.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useStateValue } from '../StateProvider';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+
 
 function Product({ id, title, price, rating, image }) {
 
@@ -8,6 +12,17 @@ function Product({ id, title, price, rating, image }) {
     const [{ }, dispatch] = useStateValue();
 
     const addToBasket = () => {
+        const string = `Added ${title} to the basket`;
+        toast.info(string, {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
         dispatch({
             type: "ADD_TO_BASKET",
             item: {
@@ -39,7 +54,11 @@ function Product({ id, title, price, rating, image }) {
             </div>
 
             <img src={image} alt="" />
-            <button onClick={addToBasket}>Add to Basket</button>
+            <button class="buy_button" onClick={addToBasket}>
+                <span class="text">Buy now</span>
+                <span><ShoppingBasketIcon /></span>
+            </button>
+            <ToastContainer />
         </div>
     )
 }

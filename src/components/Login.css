@@ -6,7 +6,6 @@
     left: 0;
 }
 
-
 .login__logo {
     width: 100px;
     object-fit: contain;
@@ -16,8 +15,8 @@
 }
 
 .login__container {  
-    background-color: #d8acc1;
-    width: 300px;
+    background-color: #dea2b1;
+    width: 270px;
     display: flex;
     flex-direction: column;
     padding: 90px;

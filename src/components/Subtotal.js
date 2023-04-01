@@ -21,6 +21,9 @@ function Subtotal() {
                         <small className='subtotal__gift'>
                             <input type="checkbox" /> This order contains a gift
                         </small>
+                        <div className="proceed_to_checkout">
+                            <button>Proceed to Checkout</button>
+                        </div>
                     </>
                 )}
 
@@ -28,11 +31,9 @@ function Subtotal() {
                 value={getBasketTotal(basket)}
                 displayType={'text'}
                 thousandSeparator={true}
-                prefix={'$'}
+                prefix={'₹'}
             />
 
-
-            <button>Proceed to Checkout</button>
         </div>
     )
 }

@@ -6,16 +6,28 @@ import './Header.css'
 import { useStateValue } from '../StateProvider';
 import logo from '../images/dog_logo.png'
 import { auth } from 'firebase';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Header() {
 
     const [{ basket, user }] = useStateValue();
-    const currentUser = auth.currentUser;
-    console.log(currentUser);
+    // const currentUser = auth.currentUser;
+
 
     const handleSignOut = () => {
         auth().signOut();
+        toast.success('Logged out successfully', {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
     }
 
     return (
@@ -37,9 +49,10 @@ function Header() {
                         <span className='header__optionLineOne'>Hello User</span>
                         <span className='header__optionLineTwo'>{user ? 'Sign Out' : 'Sign In'}</span>
                     </div>
+                    <ToastContainer />
                 </Link>
 
-                <Link to='/' className='header__link'>
+                <Link to='/professional' className='header__link'>
                     <div className='header__option'>
                         <span className='header__optionLineOne'>Ask Professional</span>
                         <span className='header__optionLineTwo'>Support</span>

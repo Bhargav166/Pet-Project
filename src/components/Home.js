@@ -8,6 +8,8 @@ import Carousel from './Carousel'
 
 
 function Home() {
+
+
     return (
         <div>
             <Header />
@@ -39,7 +41,7 @@ function Home() {
                         rating={5}
                         image="https://m.media-amazon.com/images/I/71PKpcLG-3L._AC_UL600_FMwebp_QL65_.jpg"
                     />
-                </div>
+                </div> 
                 <div className="home__row">
                     <Product
                         id="4"

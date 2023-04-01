@@ -3,6 +3,8 @@ import './Login.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { auth } from '../firebase.js'
 import logo from '../images/dog_logo.png'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
 
@@ -10,14 +12,66 @@ function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const notify_register_success = () => {
+        toast.success('Registered Successfully 🐶', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+
+    const notify_register_fail = (error) => {
+        toast.error(error, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+
+    const notify_login_success = () => {
+        toast.success('Logged in Successfully 🐶', {
+            position: "top-right",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+
+    const notify_login_fail = (error) => {
+        toast.error(error, {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+    }
+
     const login = event => {
         event.preventDefault();
         auth.signInWithEmailAndPassword(email, password)
             .then(() => {
                 history('/');
-                alert('Logged in successfully')
+                notify_login_success();
             })
-            .catch(e => alert(e.message))
+            .catch(e => notify_login_fail(e.message))
 
     }
 
@@ -25,10 +79,9 @@ function Login() {
         event.preventDefault();
         auth.createUserWithEmailAndPassword(email, password)
             .then(() => {
-                alert("Account registered")
+                notify_register_success();
             })
-            .catch(e => alert(e.message))
-
+            .catch(e => notify_register_fail(e.message))
     }
 
     return (
@@ -48,10 +101,21 @@ function Login() {
                     <h5>Password</h5>
                     <input value={password} onChange={event => setPassword(event.target.value)} type="password" />
                     <button onClick={login} type="submit" className="login__signInButton">Sign In</button>
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={4000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover={false}
+                        theme="light"
+                    />
                 </form>
                 <p>Not registered?</p>
                 <button onClick={register} className="login__registerButton">Create your Account</button>
-
             </div>
         </div>
 

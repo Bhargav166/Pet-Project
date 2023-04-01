@@ -4,6 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from './components/Home.js';
 import Login from './components/Login.js';
 import Checkout from './components/Checkout.js';
+import Breed from './components/Breed.js';
+import Professional from './components/Professional.js';
+import Brand from './components/Brand.js';
+import Blogs from './components/Blogs.js';
 import { useStateValue } from './StateProvider';
 import { auth } from './firebase.js'
 
@@ -42,7 +46,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/professional" element={<Professional />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path='/shop/breed' element={<Breed />} />
+          <Route path='/shop/brand' element={<Brand />} />
+          <Route path='/blogs' element={<Blogs />} />
         </Routes>
       </div>
     </Router>

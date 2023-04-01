@@ -3,25 +3,26 @@
     flex-direction: column;
     justify-content: space-between;
     width: 300px;
-    height: 100px;
+    height: 110px;
     padding: 20px;
-    background-color: #f3f3f3;
+    background-color: #ebe074;
     border: 1px solid #dddddd;
-    border-radius: 3px;
+    border-radius: 5px;
+
 }
 
 .subtotal__gift {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .subtotal__gift > input {
     margin-right: 5px;
 }
 
-.subtotal__gift > button {
-    background-color: #f0c14b;
+/* .subtotal__gift > button {
+    background-color: #ebe074;
     border: 1px solid;
     border-color: #a88734 #9c7e31 #846a29;
     color: #111;
@@ -29,4 +30,20 @@
     width: 100%;
     height: 30px;
     margin-top: 10px;
+} */
+
+.proceed_to_checkout > button{
+    background-color: #2838cbe1;
+    color: white;
+    border: 1px white;
+    border-radius: 5px;
+    padding: 10px;
+    transition: 0.5s ease-out;
+    font-weight: bold;
+}
+
+.proceed_to_checkout > button:hover {
+    background-color: white;
+    color: #141f8b;
+    border: 1px solid #141f8b;
 }
