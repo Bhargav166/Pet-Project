@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useStateValue } from '../StateProvider';
 import './Checkout.css';
 import Header from './Header';
@@ -6,9 +6,17 @@ import CheckoutProduct from './CheckoutProduct';
 import Subtotal from './Subtotal';
 // import CurrenyFormat from 'react-currency-format'
 
+
 function Checkout() {
     // eslint-disable-next-line
     const [{ basket }] = useStateValue();
+
+    if (basket.length > 0) {
+        useEffect(() => {
+            window.scrollTo(0, 0)
+        }, [])
+    }
+
     let ad_class = 'checkout__ad'
     if (basket.length > 0) {
         ad_class = 'checkout__ad--shift'
@@ -44,6 +52,7 @@ function Checkout() {
                                     rating={item.rating}
                                 />
                             ))}
+
                         </div>
                     )}
                 </div>
